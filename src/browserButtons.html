@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <style>
+      /* * {
+        border: 1px solid red;
+      } */
+      main {
+        display: grid;
+        grid-template-columns: repeat(2, 75px) 400px 75px;
+        column-gap: 15px;
+      }
+      #back {
+        grid-column: 1 / 2;
+      }
+      #forward {
+        grid-column: 2 / 3;
+      }
+      #address {
+        grid-column: 3 / 4;
+        display: flex;
+      }
+      #address #label {
+        margin-right: 15px;
+      }
+      #address #address-text {
+        flex: 1;
+      }
+      #go {
+        grid-column: 4 / 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <button id="back" disabled>Back</button>
+      <button id="forward">Forward</button>
+      <div id="address">
+        <label id="label" for="address-text">Address</label>
+        <input id="address-text" type="text" value="" />
+      </div>
+      <button id="go">Go</button>
+    </main>
+  </body>
+  <script>
+    const backStack = [];
+    let currentAddress = "";
+    const forwardStack = [];
+    const addressBar = document.getElementById("address-text");
+    const backButton = document.getElementById("back");
+    const forwardButton = document.getElementById("forward");
+    const goButton = document.getElementById("go");
+    const inputText = document.getElementById("address-text");
+    go.addEventListener("click", (e) => {
+      backButton.disabled = false;
+      backStack.push(currentAddress);
+      currentAddress = addressBar.value;
+    });
+
+    backButton.addEventListener("click", () => {
+      const lastAddress = backStack.pop();
+      forwardStack.push(addressBar.value);
+      addressBar.value = lastAddress;
+      currentAddress = lastAddress;
+    });
+
+    forwardButton.addEventListener("click", () => {
+      const lastAddress = forwardStack.pop();
+      backStack.push(addressBar.value);
+      addressBar.value = lastAddress;
+      currentAddress = lastAddress;
+    });
+  </script>
+</html>

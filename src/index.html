@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <%= htmlWebpackPlugin.tags.headTags %>
+  </head>
+  <body>
+    <%= htmlWebpackPlugin.tags.bodyTags %>
+    <input id="textValue" type="text" value="" />
+    <button id="button" type="button">Click Me</button>
+    <div>Hello, JS world!</div>
+    <input id="input" type="text" value="50" data-input="input" />
+    <input id="slider" type="range" min="1" max="100" value="50" />
+  </body>
+
+  <script>
+    // Bind slider and text values
+    const textSlider = document.getElementById("input");
+    const slider = document.getElementById("slider");
+    slider.addEventListener("change", (e) => {
+      textSlider.value = e.target.value;
+    });
+    textSlider.addEventListener("change", (e) => {
+      slider.value = e.target.value;
+    });
+
+    // Simple counter
+    let count = 0;
+    const button = document.getElementById("button");
+    const text = document.getElementById("textValue");
+    text.value = 0;
+
+    button.onclick = () => {
+      text.value = +text.value + 1;
+      console.log(text.value);
+    };
+  </script>
+</html>

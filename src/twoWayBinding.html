@@ -1,0 +1,36 @@
+<html>
+  <head> </head>
+
+  <body>
+    <input type="text" id="inputText" value="Steve" />
+    <span id="span" value=""></span>
+    <button id="button">Change Value To Kim</button>
+  </body>
+  <script>
+    const inputText = document.getElementById("inputText");
+    const span = document.getElementById("span");
+    const obj = {
+      name: "inputText",
+      value: inputText.value,
+    };
+    inputText.addEventListener("keypress", (e) => {
+      obj.value = e.target.value;
+      span.innerHTML = e.target.value;
+    });
+    const proxy = new Proxy(obj, {
+      set: (target, prop, value) => {
+        if (prop === "value" && target.name === "inputText") {
+          target[name] = value;
+          inputText.value = value;
+          span.innerHTML = value;
+          return true;
+        }
+      },
+    });
+
+    const button = document.getElementById("button");
+    button.addEventListener("click", (e) => {
+      proxy.value = "Kim";
+    });
+  </script>
+</html>

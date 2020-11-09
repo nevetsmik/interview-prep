@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.js"></script>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="counter">
+      Counter: {{ counter }}
+    </div>
+    <button @click="increment">Increment</button>
+    <script>
+      import { ref } from "vue";
+      const Counter = {
+        setup() {
+          const counter = ref(0);
+          const increment = () => counter++;
+          return { counter, increment };
+        },
+      };
+
+      Vue.createApp(Counter).mount("#counter");
+    </script>
+  </body>
+</html>
